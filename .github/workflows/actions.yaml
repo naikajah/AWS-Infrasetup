@@ -12,5 +12,5 @@ jobs:
         with:
           who-to-greet: Piyush
       - name: Log greeting time
-        run: echo "${{ steps.greet.output.time }}"
+        run: echo "${{ steps.greet.outputs.time }}"
       
