@@ -7,7 +7,7 @@ on:
   pull_request:
     branches:
     - master
-    types: [labeled, reopened]
+    types: [labeled, reopened, edited]
 
 jobs:
   terraform:
