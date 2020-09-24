@@ -29,3 +29,9 @@ jobs:
 
     - name: Terraform Validate
       run: terraform validate
+
+    - name: Setup providers configuration
+      uses: finnp/create-file-action@master
+      env:
+        FILE_NAME: test.txt
+        FILE_DATA: "This is a sample test"
