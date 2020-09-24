@@ -4,7 +4,6 @@ on:
   pull_request:
     branches:
     - master
-    types: [labeled, reopened, edited]
 
 env:
   TF_VERSION: 0.12.29
