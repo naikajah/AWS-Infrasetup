@@ -6,6 +6,9 @@ on:
     - master
     types: [labeled, reopened, edited]
 
+env:
+  TF_VERSION: 0.12.29
+
 jobs:
   terraform:
     name: 'terraform'
@@ -17,10 +20,20 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
       with:
-        terraform_version: 0.12.29
+        terraform_version: ${TF_VERSION}
+
+    - name: Setup providers configuration
+      uses: finnp/create-file-action@master
+      env:
+        FILE_NAME: test.tf
+        FILE_DATA: |
+          "This is the test file"
 
     - name: Terraform Init
       run: terraform init
 
     - name: Terraform Format
       run: terraform fmt -check
+    
+    - name: Terraform validate
+      run: terraform validate
