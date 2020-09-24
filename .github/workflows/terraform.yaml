@@ -4,7 +4,9 @@ on:
   pull_request:
     branches:
     - master
-    types: [labeled, reopened, edited]
+
+env:
+  TF_VERSION: 0.12.29
 
 jobs:
   terraform:
@@ -17,10 +19,13 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
       with:
-        terraform_version: 0.12.29
+        terraform_version: ${{ env.TF_VERSION }}
 
     - name: Terraform Init
       run: terraform init
 
     - name: Terraform Format
       run: terraform fmt -check
+
+    - name: Terraform Validate
+      run: terraform validate
